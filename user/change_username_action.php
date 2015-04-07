@@ -1,6 +1,6 @@
 <?php
 if (isset($_POST['username_new']) AND isset($_POST['password'])) {
-	//echo "succes";
+
 	$username_new= $_POST['username_new'];
 	$password_typed= $_POST['password'];
 	$db_connect= db_connect();
@@ -9,18 +9,19 @@ if (isset($_POST['username_new']) AND isset($_POST['password'])) {
 	$email= $_SESSION['email'];
 	$query_password_check= "SELECT * FROM users_noyau WHERE id=$userID AND password='$password_typed'";
 	$password_check= $db_connect->query($query_password_check);
-	//print_r($userID);
+
 	if (mysqli_num_rows($password_check) == 1) {
-		echo "succes2";
+		//echo "succes2";
 		$query="SELECT * FROM users_noyau WHERE username = '$username_new';";
 		$checkUserName= $db_connect->query($query);
 		if (mysqli_num_rows($checkUserName) == 1) {
 			echo "Le nom d'utilisateur est indisponible! Veuillez en choisir un autre.";
 		}else {
-			echo "succes3";
-			$query_update_db= "UPDATE users_noyau SET username=$username_new WHERE id=$userID";
+			//echo "succes3";
+			$query_update_db= "UPDATE users_noyau SET username='$username_new' WHERE id=$userID";
 			$update_username= $db_connect->query($query_update_db);
 			if($update_username){
+				//echo "success4";
 				$emailfrom="notify@franmako.be";
 				$from="From:";
 				$from .= $emailfrom;
@@ -44,6 +45,4 @@ if (isset($_POST['username_new']) AND isset($_POST['password'])) {
 }else {
 	echo "Les champs requis ne sont pas valides!";
 }
-
-
 ?>

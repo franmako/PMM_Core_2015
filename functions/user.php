@@ -43,5 +43,6 @@ function user_info_display(){
 	echo "<p>Date d'inscription: ".$_SESSION['register_date']."<p>";
 	echo '<p>Votre email est: '.$_SESSION['email'].'<a href="index.php?rq=change_email">[Modifier]</a></p> ';
 	echo "<p>Statut : <b>".$_SESSION['userlevel_label']."</b></p>";
+	echo '<a href="index.php?rq=change_password">[Changer votre mot de passe]</a>';
 } 
 ?>

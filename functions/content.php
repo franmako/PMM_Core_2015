@@ -19,6 +19,12 @@ function GetContent(){
 	case 'change_email':
 		include 'user/change_email_form.php';
 		break;
+	case 'change_password':
+		include 'user/change_password_form.php';
+		break;
+	case 'password_modify':
+		include 'user/change_password_action.php';
+		break;
 	case 'contact_action':
 		include 'forms/contact_action.php';
 		break;
