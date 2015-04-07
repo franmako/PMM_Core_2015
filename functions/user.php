@@ -39,9 +39,9 @@ function isAdmin(){
 }
 function user_info_display(){
 	echo'<h3>Profil</h3>';
-    echo "<p>Utilisateur: <b>".$_SESSION['username']."</b><a> [Modifier] </a></p>";
+    echo '<p>Utilisateur: <b>'.$_SESSION['username'].'</b><a href="index.php?rq=change_username">[Modifier]</a></p>';
 	echo "<p>Date d'inscription: ".$_SESSION['register_date']."<p>";
-	echo "<p>Votre email est: ".$_SESSION['email']."<a> [Modifier] </a></p> ";
+	echo '<p>Votre email est: '.$_SESSION['email'].'<a href="index.php?rq=change_email">[Modifier]</a></p> ';
 	echo "<p>Statut : <b>".$_SESSION['userlevel_label']."</b></p>";
 } 
 ?>

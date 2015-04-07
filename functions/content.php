@@ -7,6 +7,18 @@ function GetContent(){
 	case 'reset_pass':
 		include'user/reset_password.php';
 		break;
+	case 'username_modify':
+		include 'user/change_username_action.php';
+		break;
+	case 'change_username':
+		include'user/change_username_form.php';
+		break;
+	case 'email_modify':
+		include 'user/change_email_action.php';
+		break;
+	case 'change_email':
+		include 'user/change_email_form.php';
+		break;
 	case 'contact_action':
 		include 'forms/contact_action.php';
 		break;
