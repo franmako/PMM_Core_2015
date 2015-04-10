@@ -4,6 +4,9 @@ function GetContent(){
 	case 'newAccount':
 		include'forms/register_form.php';
 		break;
+	case 'user_manage_detail':
+		include 'user/user_manage_profile.php';
+		break;
 	case 'reset_pass':
 		include'user/reset_password.php';
 		break;
@@ -24,6 +27,12 @@ function GetContent(){
 		break;
 	case 'password_modify':
 		include 'user/change_password_action.php';
+		break;
+	case 'avatar_upload':
+		include 'user/upload_avatar_form.php';
+		break;
+	case 'avatar_upload_action':
+		include 'user/upload_avatar_action.php';
 		break;
 	case 'contact_action':
 		include 'forms/contact_action.php';
@@ -100,6 +109,9 @@ function GetContent(){
 		break;
 	case 'contactFail':
 		echo "<p>Un ou plusieurs champs sont incomplets!</p>";
+		break;
+	case 'secret_answer':
+		include 'forms/secretQuestion_answer_action.php';
 		break;
 	default:
 		echo '<h2>Acceuil</h2><p>

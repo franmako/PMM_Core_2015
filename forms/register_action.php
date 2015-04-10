@@ -22,6 +22,7 @@ if(!empty($_POST['username']) AND !empty($_POST['password_verif']) AND !empty($_
      	}else{
      		$activation_key = md5(microtime(TRUE)*100000);//Generate activation key
 			$db_connect= db_connect();
+			
         	$query= "INSERT INTO users_noyau (id,username, email,password,register_date,activation_date,avatar,secret_question) VALUES(NULL,'$username','$email','$password',NOW(),NULL,0,0);";
         	$registerquery= $db_connect->query($query);
 			$userID = $db_connect->insert_id;//Get last added id to table
@@ -33,6 +34,10 @@ if(!empty($_POST['username']) AND !empty($_POST['password_verif']) AND !empty($_
         	$db_connect= db_connect();
         	$query= "INSERT INTO account_activation (users_id,cle,id) VALUES($userID,'$activation_key',NULL);";
         	$result= $db_connect->query($query);
+			
+			$db_connect= db_connect();
+			$query="INSERT INTO avatar_filenames (id,users_id,filename) VALUES (NULL,$userID,'default.png')";
+			$result= $db_connect->query($query);
 			
         	if($registerquery){
 				$emailfrom="notify@franmako.be";

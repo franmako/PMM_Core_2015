@@ -6,7 +6,9 @@ function db_connect(){
 function getRow($query){
 	$db_connect= db_connect();
 	$result= $db_connect->query($query);
-	$row = mysqli_fetch_array($result);
+	if ($result) {
+		$row = mysqli_fetch_array($result);
+	}
 	return($row);
 }
 ?>

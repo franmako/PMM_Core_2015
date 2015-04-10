@@ -16,13 +16,14 @@ if($isAdmin){
 	</tr>';
 
 	while($row = mysqli_fetch_array($result)){
+	$messageID= $row['id'];
 	echo'
 	<tr>
 		<td> '.$row['id'].' </td>
 		<td> '.$row['subject'].' </td>
 		<td>' .$row['email']. '</td>
 		<td> '.$row['time_sent'].' </td>
-		<td> echo "<a>Détails </a index.php?rq=message_detail&id=$row[\'messageID\']>"</td>
+		<td> <a href="index.php?rq=message_detail&id='.$messageID.'">[Lire]</a></td>
 	</tr>'; }
 		
 }else{

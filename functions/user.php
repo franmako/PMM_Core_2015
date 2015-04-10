@@ -26,6 +26,7 @@ function session_init($row){
 	$_SESSION['connected'] = 1;
 	$_SESSION['register_date']= $row['register_date'];
 	$_SESSION['secretquestion']= $row['secret_question'];
+	$_SESSION['hasAvatar']= $row['avatar'];
 }
 
 function isAdmin(){
@@ -39,6 +40,17 @@ function isAdmin(){
 }
 function user_info_display(){
 	echo'<h3>Profil</h3>';
+	$userID=$_SESSION['userID'];
+	$query="SELECT * FROM avatar_filenames WHERE users_id=$userID";
+	$row=getRow($query);
+	$avatar_filename= $row['filename'];
+	if ($_SESSION['hasAvatar'] == 0) {
+		echo '<img src="images/avatars/default.png" alt="Default Profile Image" style="width:150px;height:150px"> <br/>';
+		echo '<a href="index.php?rq=avatar_upload">[Ajouter un avatar]</a>';
+	}else {
+		echo '<img src="images/avatars/'.$avatar_filename.'" alt="Profile Image" style="width:150px;height:150px"><br/>';
+		echo '<a href="index.php?rq=avatar_upload">[Modifier]</a>';
+	}
     echo '<p>Utilisateur: <b>'.$_SESSION['username'].'</b><a href="index.php?rq=change_username">[Modifier]</a></p>';
 	echo "<p>Date d'inscription: ".$_SESSION['register_date']."<p>";
 	echo '<p>Votre email est: '.$_SESSION['email'].'<a href="index.php?rq=change_email">[Modifier]</a></p> ';
