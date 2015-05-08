@@ -17,7 +17,7 @@ if((isset($_POST['subject']) AND $_POST['subject'] != null) AND (isset($_POST['c
     
     if($messagequery){
     	//Envoi e-mail de notification à l'utilisateur
-		$emailfrom="notify@monsite.be";
+		$emailfrom=CONTACT_NOTIFY;
 		$from="From:";
 		$from .= $emailfrom;
 		$sujet=$subject;

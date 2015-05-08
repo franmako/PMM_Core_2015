@@ -1,3 +1,4 @@
 <div class="bloc_page" id="contenu">
-<?php getContent(); ?>
+	<?php getContent(); ?> 
 </div>
+

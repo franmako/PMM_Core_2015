@@ -1,0 +1,244 @@
+/* Header */
+
+header{
+    background-image: url("images/banner.jpg");
+    border:5px solid #000000;
+    margin-bottom: 20px;
+}
+
+header h1
+{
+    font-family: 'BallparkWeiner', serif;
+    font-size: 2.5em;
+    font-weight: normal;
+}
+
+#logo, header h1
+{
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+header h2
+{
+    font-family: Dayrom, serif;
+    font-size: 1.1em;
+    margin-top: 0px;
+    font-weight: normal;
+}
+/* Général */
+body {
+	color: #F0E39E;
+	background: #3D5C5C;
+}
+a {
+	color: #FF6533;
+}
+a:hover, a:focus {
+	color: #FF4C00;
+}
+strong {
+	color: #A1B55D;
+}
+/* Header */ 
+
+header h1{
+	color: #000000;
+	text-align: center;
+	display: block;
+	font-size: 2em;
+	font-weight: bold;
+	font-family: 'Trebuchet MS',Arial,sans-serif;
+}
+/* Menu de navigation */
+#navigation {
+	width: 18%;
+	float: left; /* -> 2 */
+}
+#navigation ul {
+	margin: 0;
+	padding: 20px 10px;
+	list-style: none;
+}
+#navigation a {
+	display: block;
+	height: 3%; /* -> 3 */
+	padding: 6px 6px 6px 10px;
+	line-height: 1.5;
+	font-size: 1.2em;
+	text-decoration: none;
+}
+
+
+/* Navigation - Default*/
+.nav_default {
+	background: #000052;
+}
+.nav_default a {
+	color: #FF6533;
+}
+.nav_default a:hover, #navigation a:focus {
+	background: #191963;
+}
+/* Navigation - Admin*/
+.nav_admin {
+	background: #145128;
+}
+.nav_admin a {
+	color: #000000;
+}
+.nav_admin a:hover, .navigation a:focus {
+	background: #33cc66;
+}
+/* Navigation - Sous Admin*/
+#nav_sousadmin {
+	background: #145128;
+}
+#nav_sousadmin a {
+	color: #000000;
+}
+#nav_sousadmin a:hover, #navigation a:focus {
+	background: #33cc66;
+}
+/* Navigation - Normal*/
+.nav_normal {
+	background: #35352B;
+}
+.nav_normal a {
+	color: #000000;
+}
+.nav_normal a:hover, #navigation a:focus {
+	background: #9A9A95;
+}
+/* Navigation - Activation*/
+.nav_activation {
+	background: #000052;
+}
+.nav_activation a {
+	color: #000000;
+}
+.nav_activation a:hover, #navigation a:focus {
+	background: #191963;
+}
+/* Navigation - Réactivation*/
+.nav_reactivation {
+	background: #000052;
+}
+.nav_reactivation a {
+	color: #000000;
+}
+.nav_reactivation a:hover, #navigation a:focus {
+	background: #191963;
+}
+/* Navigation - En demande de mot de passe*/
+.nav_pass {
+	background: #000052;
+}
+.nav_pass a {
+	color: #FF6533;
+}
+.nav_pass a:hover, #navigation a:focus {
+	background: #000000;
+}
+/* Navigation - Frozen*/
+.nav_frozen {
+	background: #000052;
+}
+.nav_frozen a {
+	color: #000000;
+}
+.nav_frozen a:hover, #navigation a:focus {
+	background: #191963;
+}
+
+
+/* Contenu principal */
+#contenu {
+	color: #363B29;
+	background: #85A3FF;
+}
+#contenu a {
+	color: #332510;
+}
+#contenu a:hover, #contenu a:focus {
+	color: #6E5122;
+}
+#contenu strong {
+	color: #181A12;
+}
+
+
+/* --- POSITIONNEMENT --- */
+
+/* Page */
+body {
+	padding: 20px 50px; /* Voir -> Note 1 ci-dessous */
+}
+
+/* En-tête */
+/*header {
+	display: block;
+	width= 80%;
+	background: url(images/header_image.jpg);
+}*/
+#entete {
+	padding: 20px 0;
+}
+#entete h1 {
+	margin: 0;
+}
+#entete h1 img {
+	float: left;
+	margin: 7px 20px 10px 0;
+}
+#entete .sous-titre {
+	margin: 4px 0 15px 0;
+}
+
+/* Contenu */
+#contenu {
+	margin-left: 20%; /* -> 4 */
+	margin-bottom: 20px;
+	padding: 10px 20px;
+}
+#contenu > :first-child {
+	margin-top: 10px;
+}
+#contenu p, #contenu li {
+	line-height: 1.5;
+}
+
+/* Mention de paternité */
+#copyright {
+	margin-left: 30%;
+	width: 60%;
+}
+
+/* Table Admin */
+table.tftable{
+	font-size:12px;
+	color:#333333;
+	width:100%;
+	border-width: 1px;
+	border-color: #a9a9a9;
+	border-collapse: collapse;
+}
+table.tftable th{
+	font-size:12px;
+	background-color:#b8b8b8;
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #a9a9a9;
+	text-align:left;
+}
+table.tftable tr{
+	background-color:#cdcdcd;
+}
+table.tftable td{
+	font-size:12px;
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #a9a9a9;
+}

@@ -15,7 +15,7 @@ $userstatus_verif= "SELECT * FROM user_status WHERE users_id=$userID";
 $row3=getRow($userstatus_verif);
 $user_status= $row3['level'];
 
-if(($username_url == $username_db) AND ($key_url == $key_db) AND ($user_status == 3) OR ($user_status == 4)){
+if(($username_url == $username_db) AND ($key_url == $key_db) AND ($user_status == USER_ACTIVATION) OR ($user_status == USER_REACTIVATION)){
 	$update_users_db= "UPDATE users_noyau SET activation_date=NOW() WHERE username= '$username_db'";
 	$db_connect= db_connect();
 	$db_connect->query($update_users_db);

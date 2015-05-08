@@ -1,23 +1,28 @@
-<?php
-if($_SESSION['userlevel'] == 0){
+<?php 
+if (!empty($_SESSION) AND $_SESSION['userlevel'] == USER_ADMIN) {
 	if (isset($_POST['username_new']) AND isset($_POST['password'])) {
-
 		$username_new= $_POST['username_new'];
 		$password= $_POST['password'];
 		$db_connect= db_connect();
-		
 		$userID_admin= $_SESSION['userID'];
 		$userID_user= $_GET['id'];
 		
-		$query_password_check= "SELECT * FROM users_noyau WHERE id=$userID_admin AND password='$password'";
-		$password_check= $db_connect->query($query_password_check);
-
-		if (mysqli_num_rows($password_check) == 1) {
+		$query_salt="SELECT * FROM user_salts WHERE users_id=$userID_admin";
+		$row_salt=getRow($query_salt);
+		$salt_db= $row_salt['salt'];
+		$hash= crypt($password,$salt_db);
 		
+		$query_user= "SELECT * FROM users_noyau WHERE id = '$userID_admin';";
+		$row_user= getRow($query_user);
+		if($row_user != FALSE){
+			$hash_db= $row_user['password'];
+		}
+		
+		if (hash_equals($hash_db, $hash)){
 			$query_getuser= "SELECT * FROM users_noyau WHERE id=$userID_user";
 			$row_user= getRow($query_getuser);
 			$email= $row_user['email'];
-
+			
 			$query="SELECT * FROM users_noyau WHERE username = '$username_new';";
 			$checkUserName= $db_connect->query($query);
 			if (mysqli_num_rows($checkUserName) == 1) {
@@ -25,8 +30,9 @@ if($_SESSION['userlevel'] == 0){
 			}else {
 				$query_update_db= "UPDATE users_noyau SET username='$username_new' WHERE id=$userID_user";
 				$update_username= $db_connect->query($query_update_db);
+				
 				if($update_username){
-					$emailfrom="notify@franmako.be";
+					$emailfrom=CONTACT_NOTIFY;
 					$from="From:";
 					$from .= $emailfrom;
 					$sujet= "Nom d'utilisateur changé!";
@@ -42,35 +48,47 @@ if($_SESSION['userlevel'] == 0){
 					echo '<p> Le nom d\'utilisateur a été changé avec succès. </p>';
 				}
 			}
+		}else {
+			echo "Le mot de passe est incorrect!";
 		}
 	}else {
-		echo "Les champs requis ne sont pas valides!";
+		echo "Les champs requis ne sont pas valides! Veuillez recommencer.";
 	}
-}else {
+} elseif (!empty($_SESSION) AND ($_SESSION['userlevel'] == USER_NORMAL OR $_SESSION['userlevel'] == USER_REACTIVATION OR $_SESSION['userlevel'] == USER_DEMANDEMDP)) {
 	if (isset($_POST['username_new']) AND isset($_POST['password'])) {
-
 		$username_new= $_POST['username_new'];
-		$password_typed= $_POST['password'];
+		$password= $_POST['password'];
 		$db_connect= db_connect();
-		
 		$userID= $_SESSION['userID'];
 		$email= $_SESSION['email'];
-		$query_password_check= "SELECT * FROM users_noyau WHERE id=$userID AND password='$password_typed'";
-		$password_check= $db_connect->query($query_password_check);
-
-		if (mysqli_num_rows($password_check) == 1) {
-			//echo "succes2";
+		
+		$query_salt="SELECT * FROM user_salts WHERE users_id=$userID";
+		$row_salt=getRow($query_salt);
+		$salt_db= $row_salt['salt'];
+		$hash= crypt($password,$salt_db);
+		
+		$query_user= "SELECT * FROM users_noyau WHERE id = '$userID';";
+		$row_user= getRow($query_user);
+		if($row_user != FALSE){
+			$hash_db= $row_user['password'];
+		}else {
+			echo "Erreur!";
+		}
+		
+		if (hash_equals($hash_db, $hash)){
+			$query_getuser= "SELECT * FROM users_noyau WHERE id=$userID";
+			$row_user= getRow($query_getuser);
+			$email= $row_user['email'];
+			
 			$query="SELECT * FROM users_noyau WHERE username = '$username_new';";
 			$checkUserName= $db_connect->query($query);
 			if (mysqli_num_rows($checkUserName) == 1) {
 				echo "Le nom d'utilisateur est indisponible! Veuillez en choisir un autre.";
 			}else {
-				//echo "succes3";
 				$query_update_db= "UPDATE users_noyau SET username='$username_new' WHERE id=$userID";
 				$update_username= $db_connect->query($query_update_db);
 				if($update_username){
-					//echo "success4";
-					$emailfrom="notify@franmako.be";
+					$emailfrom=CONTACT_NOTIFY;
 					$from="From:";
 					$from .= $emailfrom;
 					$sujet= "Nom d'utilisateur changé!";
@@ -78,20 +96,23 @@ if($_SESSION['userlevel'] == 0){
 					'Bonjour,
  
 					Le nom d\'utilisateur associé à cet adresse e-mail vient d\'être changé!
-					Le nouveau nom d\'utilidateur est : '.$username_new.'
  					---------------
 					Ceci est un mail automatique, Merci de ne pas y répondre. Veuillez contacter l\'admin si ce changement ne vient pas de vous.';
 					$to=$email;
 					$sent = mail($to,$sujet,$contenu,$from);
 			
-					echo '<p> Le nom d\'utilisateur a été changé avec succès. Reconnectez vous avec le nouveau nom pour voir le changement. </p>';
+					echo '<p> Le nom d\'utilisateur a été changé avec succès. Vous allez être déconnecté... </p>';
+					include 'user/logout.php';
 				}
 			}
 		}else {
-			echo "Le mot de passe ne correspond pas à l'utilisateur connecté!";
+			echo "Le mot de passe est incorrect!";
 		}
 	}else {
-		echo "Les champs requis ne sont pas valides!";
+		echo "Les champs requis ne sont pas valides! Veuillez recommencer.";
 	}
+}else {
+	unauthorizedAccess();
 }
+
 ?>

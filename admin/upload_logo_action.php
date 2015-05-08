@@ -1,6 +1,6 @@
 <?php 
-if(!empty($_SESSION) AND ($_SESSION['userlevel'] != USER_ACTIVATION OR $_SESSION['userlevel'] != USER_BANNED OR $_SESSION['userlevel'] != USER_FROZEN)){
-	$target_dir = "images/avatars/";
+if(!empty($_SESSION) AND $_SESSION['userlevel'] == USER_ADMIN){
+	$target_dir = "images/logo/";
 	$target_file = $target_dir . basename($_FILES["photo"]["name"]);
 	$uploadOk = false;
 	$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -34,18 +34,11 @@ if(!empty($_SESSION) AND ($_SESSION['userlevel'] != USER_ACTIVATION OR $_SESSION
 		// if everything is ok, try to upload file
 	}else {
 		if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
-			$avatar_filename= basename( $_FILES["photo"]["name"]);
-			$userID= $_SESSION['userID'];
-			$db_connect= db_connect();
-			$query="UPDATE avatar_filenames SET filename='$avatar_filename' WHERE users_id=$userID";
-			$result= $db_connect->query($query);
-			$query= "UPDATE users_noyau SET avatar=1 WHERE id=$userID";
-			$result= $db_connect->query($query);
-      		$redimOK = redimImage(AVATAR_MAX_WIDTH,AVATAR_MAX_HEIGHT,'','',AVATAR_PATH,$avatar_filename);
-			
-			if($result AND $redimOK){
+			$logo_filename= basename( $_FILES["photo"]["name"]);
+      		$redimOK = redimImage(LOGO_MAX_WIDTH,LOGO_MAX_HEIGHT,'','',LOGO_PATH,$logo_filename);	
+			if($redimOK){
 				echo "<p>Le fichier ". basename( $_FILES["photo"]["name"]). " a été uploadé.</p>";
-				echo '<img src="images/avatars/'.$avatar_filename.'" alt="Profile Image">';
+				echo '<img src="'.LOGO_PATH.$logo_filename.'" alt="Profile Image">';
 			}
 		} else {
 			echo "<p>Erreur sur l'upload du fichier.</p>";

@@ -1,5 +1,5 @@
 <?php 
-echo "En attente...";
+//echo "En attente...";
 if (isset($_POST['password_new']) AND isset($_POST['password']) AND isset($_POST['password_verif'])) {
 	$password_new= $_POST['password_new'];
 	$password_verif= $_POST['password_verif'];
@@ -18,7 +18,7 @@ if (isset($_POST['password_new']) AND isset($_POST['password']) AND isset($_POST
 		$update_username= $db_connect->query($query_update_db);
 			if($update_username){
 				//echo "success4";
-				$emailfrom="notify@franmako.be";
+				$emailfrom=CONTACT_NOTIFY;
 				$from="From:";
 				$from .= $emailfrom;
 				$sujet= "Mot de passe changé!";

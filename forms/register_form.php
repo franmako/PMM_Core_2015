@@ -2,7 +2,10 @@
 <p>
 	<ul>
 		<li>
-			Le nom d'utilisateur doit avoir un minimum de 6 caractères.
+			Le nom d'utilisateur doit avoir un minimum de <?php echo "".USERNAME_MIN_SIZE.""; ?> caractères.
+		</li>
+		<li>
+			Le mot de passe doit avoir un minimum de <?php echo "".PASSWORD_MIN_SIZE.""; ?> caractères et contenir au moins un chiffre, une lettre minuscule, une lettre majuscule et un caractère spécial.
 		</li>
 	</ul>
 </p>
@@ -13,7 +16,7 @@
 				<p class="signup">Nom d'utilisateur</p>
 			</td>
 			<td>
-				<input name="username" type="text" value="<?php if (isset($_GET['user']))$_GET['user'] ?>" maxlength="65" size="25" />
+				<input name="username" type="text" value="<?php if(!empty($_GET['user'])){echo $_GET['user'];}else{echo'';} ?>" maxlength="65" size="25" />
 				<font color="orangered" size="+1"><tt><b>*</b></tt></font>
 			</td>
 		</tr>
@@ -40,7 +43,7 @@
 				<p class="signup">Adresse e-mail</p>
 			</td>
 			<td>
-				<input name="email" type="email" value="<?php if (isset($_GET['email']))$_GET['email'] ?>" maxlength="100" size="25" />
+				<input name="email" type="email" value="<?php if(!empty($_GET['email'])){echo $_GET['email'];}else{echo'';} ?>" maxlength="100" size="25" />
 				<font color="orangered" size="+1"><tt><b>*</b></tt></font>
 			</td>
 		</tr>	

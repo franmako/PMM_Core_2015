@@ -3,34 +3,39 @@
 ;/*
 [Header]
 title = "Projet PMM - Noyau"
-header_title= "Projet PMM"
-logo = ""
-logo_height = 150
-logo_width = 150
+banner_title= "Noyau du projet" 
+logo = "images/logo.jpg"
+logo_min_height= 0
+logo_height = 66
+logo_max_height= 100
+logo_min_width= 0
+logo_width = 200
+logo_max_width= 400
 
 [Footer]
-copyright_date= "2015"
+copyright_date= "Copyright &copy; 2015"
 author_name= "Francis O. Makokha"
 
 [Contact]
 admin="francismakokha@gmail.com"
-notify="notify@franmako.com"
-regiser="register@franmako.com"
-confirm= "confirm@franmako.com"
+notify="notify@he201139.com"
+register="register@he201139.com"
+confirm= "confirm@he201139.com"
 
 [Register]
-username_size_min= 6
+username_min_size= 6
+password_min_size= 8
+password_max_size= 32
  
 [Database]
-sessionName = "he201139"
 hostname_local = "localhost"
 hostname_external =  "193.190.65.94"
 db_name = "1415he201139"
 db_user = "OMURUON"
 db_password = "Francis"
 
-[AvatarSize]
-file = "images/avatars/"
+[Avatar]
+path = "images/avatars/"
 avatar_min_height = 100
 avatar_max_height = 200
 avatar_min_width = 100
